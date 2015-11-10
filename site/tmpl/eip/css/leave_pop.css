@@ -1,0 +1,546 @@
+/* Same Code */
+.pop_status_2 .mdl-card__title,
+.paid_sick_pop .mdl-card__title,
+.ap_pop_status button .mdl-ripple,
+#ui-datepicker-div .ui-datepicker-header {
+  background: #FF9801;
+}
+
+.apply_for_leave .mdl-card__title,
+#ui-datepicker-div,
+#ui-datepicker-div .ui-state-default,
+.popover.bottom.clockpicker-popover .popover-content {
+  background: #FFF;
+}
+
+.pop_status_2 .al_status_sign:after,
+.pop_status_2 .al_status_sign + div > span,
+.popover .popover-title .text-primary,
+.apply_for_leave .ap_pop_status button,
+.popover.bottom.clockpicker-popover .clockpicker-button {
+  color: #FF9801;
+}
+
+.pop-list .mdl-card__title,
+.paid_sick_pop .ap_pop_status button,
+#ui-datepicker-div .ui-state-default.ui-state-highlight,
+.clockpicker-plate .clockpicker-tick.active,
+.clockpicker-plate .clockpicker-tick:hover,
+.clockpicker-tick {
+  color: #FFF;
+}
+
+.apply_for_leave .mdl-card__title,
+#ui-datepicker-div .ui-datepicker-prev.ui-state-hover,
+#ui-datepicker-div .ui-datepicker-next.ui-state-hover,
+#ui-datepicker-div .ui-state-default {
+  color: #000;
+}
+
+select,
+.from_date,
+.from_time,
+#ui-datepicker-div,
+#ui-datepicker-div .ui-datepicker-header,
+.popover.bottom,
+#ui-datepicker-div .ui-datepicker-prev.ui-state-hover,
+#ui-datepicker-div .ui-datepicker-next.ui-state-hover,
+#ui-datepicker-div .ui-state-default {
+  border: 0;
+}
+
+#ui-datepicker-div,
+#ui-datepicker-div .ui-datepicker-header,
+.popover.bottom {
+  border-radius: 0;
+}
+
+#ui-datepicker-div .ui-datepicker-header,
+.popover.bottom,
+.popover.bottom.clockpicker-popover .clockpicker-button {
+  font-family: cursive;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar th,
+#ui-datepicker-div .ui-datepicker-header,
+.popover.bottom,
+#ui-datepicker-div .ui-state-default {
+  font-weight: normal;
+}
+
+[class="pop_status_"] .al_status_sign:after,
+.apply_for_leave .mdl-card__title h4,
+.popover.bottom.clockpicker-popover .clockpicker-button {
+  font-weight: bold;
+}
+
+.al_status_sign,
+.al_status_text,
+.al_pop_close:after,
+#ui-datepicker-div .ui-state-default,
+.popover.bottom.clockpicker-popover .popover-content {
+  text-align: center;
+}
+
+.pop-list,
+.apply_new,
+.popover.bottom.clockpicker-popover .arrow { 
+  display: none;
+}
+
+/* Form */
+#leave_form {
+  margin-bottom: 80px
+}
+
+/* leave popups */
+.pop-list span, .apply_new span {
+  display: block;
+}
+
+.mdl-card {
+  width: 370px;
+}
+
+/* Application approved */
+.mdl-card__title, .mdl-card__actions {
+  padding: 15px 13px;
+}
+
+.pop-list .mdl-card__title {
+  background: #03A9F3;
+  position: relative;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
+  flex-grow: 0;
+}
+
+.mdl-card__title h4 {
+  margin: 0;
+}
+
+.mdl-card__actions .al_gap {
+  margin-bottom: 20px;
+}
+
+.pop-list .mdl-card__actions > div {
+  margin-bottom: 30px;
+}
+
+.pop_status_1 .al_status_sign:after, .pop_status_1 .al_status_text > span {
+  color: #03A9F3;
+}
+
+.al_content_subtitle {
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.al_status_sign {
+  height: 65px;
+  width: 65px;
+  line-height: 67px;
+  border: 3px solid #03A9F3;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+}
+
+.pop_status_1 .al_status_sign:after {
+  content: '\2714';
+  font-size: 40px;
+}
+
+.al_status_text {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.al_pop_close:after {
+  height: 20px;
+  width: 20px;
+  content: '\2716';
+  font-size: 12px;
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  cursor: pointer;
+}
+
+.mdl-card__actions .al_duration input#leave_days,
+.mdl-card__actions .al_duration input#leave_hours, 
+.mdl-card__actions .al_duration input#event_duration,
+.mdl-card__actions .al_duration input#update_duration {
+  width: 70%;
+  float: left;
+}
+
+.mdl-card__actions .al_duration span.al_day,
+.mdl-card__actions .al_duration span.al_hour {
+  width: 20%;
+  float: right;
+}
+
+/* Application denied */
+.pop_status_0 .mdl-card__title {
+  background: #9C28AF;
+}
+
+.pop_status_0 .al_status_sign {
+  border-color: #9C28AF;
+}
+
+.pop_status_0 .al_status_sign:after, .pop_status_0 .al_status_sign + div > span {
+  color: #9C28AF;
+}
+
+.pop_status_0 .al_status_sign:after {
+  content: '\274c';
+  font-size: 40px;
+}
+
+/* Application waiting */
+.pop_status_2 .mdl-card__title {
+  padding: 20px 25px;
+}
+
+.pop_status_2 .al_status_sign {
+  border-color: #FF9801;
+}
+
+.pop_status_2 .al_status_sign:after {
+  content: '\2753';
+  font-size: 40px;
+}
+
+/* Paid sick leave */
+.paid_sick_pop, .pop-list .apply_for_leave {
+  min-height: 570px;
+}
+
+.ap_pop_status button,
+.ap_pop_status button:hover,
+.apply_for_leave .mdl-card__title {
+  box-shadow: 0 0 0 0;
+}
+
+.paid_sick_pop .mdl-card__actions {
+  height: 390px;
+  border-bottom: 1px solid #E2E2E2;
+  overflow-y: scroll;
+}
+
+.paid_sick_pop .ap_pop_status,
+.apply_for_leave .ap_pop_status {
+  margin-bottom: 0;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.paid_sick_pop .ap_pop_status button {
+  border-radius: 5px;
+  background: #555;
+  padding: 0 20px;
+}
+
+.paid_sick_pop .ap_pop_status button:hover {
+  background: #555;
+}
+
+.paid_sick_pop .ap_pop_status button + button {
+  margin-left: 10px;
+  position: relative;
+  background: #F54337;
+}
+
+.paid_sick_pop .ap_pop_status button + button:hover {
+  background: #F54337;
+}
+
+/* Apply for a leave */
+.apply_for_leave .mdl-card__title {
+  max-height: 65px;
+}
+
+.apply_for_leave .mdl-card__actions {
+  border-top: 0;
+}
+
+select {
+  width: 101%;
+  border-bottom: 1px solid #D4D4D4;
+  padding: 2px 0 5px;
+  margin-left: -4px;
+  font-size: 16px;
+  outline: 0;
+}
+
+.datepicker, .timepicker {
+  border-bottom: 1px solid #D4D4D4;
+  display: inline-block;
+}
+
+.datepicker {
+  width: 58%;
+}
+
+.timepicker {
+  width: 36%;
+  margin-left: 4.5%;
+}
+
+.datepicker input, .timepicker input {
+  height: 25px;
+  width: 85%;
+  outline: 0;
+  font-size: 16px;
+}
+
+.timepicker input {
+  width: 79%;
+}
+
+.datepicker i, .timepicker i {
+  font-size: 22px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.event_date {
+  width: 33%;
+}
+
+.event_time {
+  width: 28%;
+  margin-left: 4%;
+}
+
+.event_duration {
+  width: 29%;
+  margin-left: 4%;
+}
+
+.is-focused .al_content_subtitle {
+  color: #00BCD4;
+}
+
+.apply_for_leave .mdl-textfield {
+  width: 100%;
+  padding: 0 0 20px;
+}
+
+.ap_pop_status .mdl-button:hover {
+  background: rgba(0,0,0,0);
+}
+
+.apply_new {
+  padding: 15px;
+  cursor: default;
+}
+
+.apply_for_leave .mdl-card__menu {
+  right: 12px;
+}
+
+textarea#desc_title {
+  resize: none;
+}
+
+/* fixed the cursor */
+.blockUI.blockOverlay {
+  cursor: pointer !important;
+}
+.blockUI.blockMsg.blockPage {
+  cursor: auto !important;
+}
+
+.popup_box {
+  top: 50% !important;
+  left: 50% !important;
+  text-align: left !important;
+  margin-left: -200px !important;
+  margin-top: -400px !important;
+  border: none !important;
+  background: none !important;
+  width: 400px !important;
+}
+
+/* Datepicker */
+#ui-datepicker-div,
+.popover {
+  z-index: 1012 !important;
+}
+
+#ui-datepicker-div {
+  width: 344px;
+  box-shadow: 0 0 8px 1px rgba(0,0,0,0.3);
+  padding: 0;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar th {
+  font-size: 16px;
+}
+
+#ui-datepicker-div .ui-datepicker-header {
+  padding: 8px 0;
+}
+
+#ui-datepicker-div .ui-datepicker-prev,
+#ui-datepicker-div .ui-datepicker-next {
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  margin-top: -15px;
+}
+
+#ui-datepicker-div .ui-datepicker-prev.ui-state-hover,
+#ui-datepicker-div .ui-datepicker-next.ui-state-hover {
+  border-radius: 50%;
+  background: #FFAF3A;
+  cursor: pointer;
+}
+
+#ui-datepicker-div .ui-datepicker-prev {
+  left: 15px;
+}
+
+#ui-datepicker-div .ui-datepicker-next {
+  right: 15px;
+}
+
+#ui-datepicker-div .ui-widget-header .ui-icon {
+  background-image: inherit;
+  height: 0;
+  width: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #FFF;
+  border-bottom: 7px solid transparent;
+  margin: -7px 0 0 -5px;
+}
+
+#ui-datepicker-div .ui-datepicker-next .ui-icon {
+  border-right: 0;
+  border-left: 7px solid #FFF;
+  margin-left: -3px;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  font-size: 18px;
+}
+
+#ui-datepicker-div .ui-datepicker-calendar {
+  margin: 5px 0 10px;
+}
+
+#ui-datepicker-div .ui-state-default {
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  margin: 0 auto;
+}
+
+#ui-datepicker-div .ui-state-default.ui-state-hover,
+#ui-datepicker-div .ui-state-default.ui-state-highlight {
+  background: #EBEBEB;
+  border-radius: 50%;
+}
+
+#ui-datepicker-div .ui-state-default.ui-state-highlight {
+  background: #FF9801;
+}
+
+/* Timepicker */
+.popover.bottom.clockpicker-popover {
+  width: 100%;
+  margin-top: 0;
+  padding: 0;
+}
+
+.popover.bottom.clockpicker-popover .popover-title {
+  border-bottom: 0;
+  padding: 25px 14px 20px;
+  font-size: 40px;
+  color: #9E9E9E;
+}
+
+.popover-content .clockpicker-plate {
+  display: inline-block;
+}
+
+.popover.bottom.clockpicker-popover .clockpicker-button {
+  width: 30%;
+  font-size: 18px;
+  border-top: 0;
+  margin: 10px auto 15px;
+  padding: 6px 0;
+}
+
+.popover.bottom.clockpicker-popover .clockpicker-button:hover {
+  background: rgba(255, 152, 1, 0.3);
+}
+
+.clockpicker-plate .clockpicker-tick {
+  color: #9E9E9E;
+}
+
+.clockpicker-popover .popover-content {
+  padding: 0;
+}
+
+.clockpicker-plate .clockpicker-tick.active,
+.clockpicker-plate .clockpicker-tick:hover,
+.btn-default.active,
+.btn-default:active,
+.btn-default:focus {
+  background: rgba(255, 152, 1, 0.5);
+}
+
+.btn-default.active,
+.btn-default:active,
+.btn-default:focus {
+  border-color: rgba(255, 152, 1, 0.5);
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+/* Create a New Notice Popup */
+#new_2 form > div {
+  margin-bottom: 20px;
+}
+
+#new_2 #expire,
+#new_2 .al_attach {
+  margin-bottom: 110px;
+}
+
+[data-create-type="notice"] .ui-datepicker .ui-datepicker-title {
+  font-size: 16px;
+}
+
+[data-create-type="notice"] .#ui-datepicker-div .ui-datepicker-calendar {
+  margin: 0;
+}
+
+[data-create-type="notice"] .ui-datepicker th {
+  padding: 8px 5px 0;
+}
+
+[data-create-type="notice"] #ui-datepicker-div .ui-state-default {
+  height: 25px;
+  width: 25px;
+  line-height: 25px;
+}
+
+[data-create-type="notice"] .popover.bottom.clockpicker-popover {
+  top: 441.5px !important;
+}
+
+[data-create-type="notice"] .popover.bottom.clockpicker-popover .popover-title {
+  padding: 10px;
+  font-size: 30px;
+}
+
+[data-create-type="notice"] .popover.bottom.clockpicker-popover .clockpicker-button {
+  margin: 5px auto 10px;
+  padding: 3px 0;
+  font-size: 16px;
+}

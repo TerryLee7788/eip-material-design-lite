@@ -1,0 +1,239 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <% inc partial/head.html %>
+    <title>FFN Search</title>
+    <link rel="stylesheet" href="css/search.css">
+  </head>
+
+  <body id="search_page">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+      <!-- header -->
+      <% inc partial/header.html %>
+
+      <!-- left nav -->
+      <% inc partial/left_nav.html %>
+
+      <!-- main -->
+      <main class="mdl-layout__content mdl-color--grey-300 mCustomScrollbar mCS-autoHide">
+        <div class="mdl-grid--no-spacing">
+          <div id="search_fields" class="mdl-grid">
+            <div class="mdl-cell mdl-cell--5-col mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" data-name="search_fields" type="text" id="keyword" name="keyword" />
+              <label class="mdl-textfield__label" for="keyword">Keyword</label>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">
+              <select name="type" data-name="search_fields">
+                <option value="notice">Notice</option>
+                <option value="leave">Leave</option>
+              </select>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">
+              <select data-type="leave" name="group" data-name="search_fields">
+                <option value="all">All</option>
+                <option value="hr">HR</option>
+                <option value="cs">CS</option>
+                <option value="qa">QA/Sitecheck</option>
+                <option value="pm">Product</option>
+                <option value="engineer">Engineering</option>
+              </select>
+              <select data-type="notice" name="group" data-name="search_fields">
+                <option value="all">All</option>
+              </select>
+            </div>
+            <div class="mdl-cell mdl-cell--2-col">
+              <select name="range" data-name="search_fields">
+                <option value="year">This Year</option>
+                <option value="month">This Month</option>
+                <option value="week">This Week</option>
+                <option value="today">Today</option>
+              </select>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col">
+              <div id="search_btn" class="search_btn">
+                <i class="material-icons">search</i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdl-grid mdl-grid--no-spacing">
+          <div id="search_content"></div>
+        </div>
+
+      </main>
+    </div>
+
+    <script id="notice_list_lightbox" type="text/x-handlebars-template">
+      <div class="pop-list">
+        <div class="demo-card-event mdl-card mdl-shadow--2dp pop_status_2">
+          <div class="mdl-card__title mdl-card--expand">
+            <h4>
+              {{title}}
+            </h4>
+            <span class="al_pop_close"></span>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <div class="al_desc">
+              <p class="al_content_subtitle">Description</p>
+              <p class="context">{{{context}}}</p>
+            </div>
+            {{#if attachment}}
+              <div class="al_attach">
+                <p class="al_content_subtitle">Attachment</p>
+                <a class="attachment" href="">{{attachment}}</a>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script id="notice_lists" type="text/x-handlebars-template">
+      <div class="notice-header">
+        <div class="title">Title</div>
+        <div class="from">From</div>
+        <div class="order-by" data-action="sort">Order by updated</div>
+      </div>
+      {{#each data}}
+        <div class="notice-lists" data-folder="{{folder}}" data-id="{{id}}">
+          <div class="title">{{title}}</div>
+          <div class="from">{{from}}</div>
+          <div class="order-by">{{order_date}}</div>
+        </div>
+      {{/each}}
+    </script>
+
+    <script id="leave-list" type="text/x-handlebars-template"> 
+      <table class="mdl-data-table mdl-js-data-table">     
+          {{#leave.lists}}
+          <tr>
+            <td class="mdl-data-table__cell--non-numeric">{{leave_type}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{leave_time}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{#checkvalue leave_duration}}{{/checkvalue}}</td>
+            <td class="mdl-data-table__cell--non-numeric status status_{{leave_status}}">{{ifstatus}}</td> 
+            <td>
+              <div class="pop-list">
+
+                <div class="demo-card-event mdl-card mdl-shadow--2dp pop_status_{{leave_status}}">
+                  <div class="mdl-card__title mdl-card--expand">
+                    <h4>
+                      My<br>
+                      {{leave_type}}
+                    </h4>
+                    <span class="al_pop_close"></span>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                    <div class="al_time">
+                      <span class="al_content_subtitle">Time</span>
+                      <span>{{leave_time}}</span>
+                    </div>
+                    <div class="al_duration">
+                      <span class="al_content_subtitle">Duration</span>
+                      <span>{{#checkvalue leave_duration}}{{/checkvalue}}</span>
+                    </div>
+                    <div class="al_reason">
+                      <span class="al_content_subtitle">Reason</span>
+                      <span>{{leave_reason}}</span>
+                    </div>
+                    <div class="al_apply_time">
+                      <span class="al_content_subtitle">Apply on</span>
+                      <span>{{leave_apply}}</span>
+                    </div>
+                    <div class="ap_pop_status">
+                      <div class="al_status_sign"></div>
+                      <div class="al_status_text">
+                        <span>This application</span>
+                        <span>{{ifstatus}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </td>
+          </tr> 
+          {{/leave.lists}}
+      </table>
+    </script>
+
+    <script>
+      !function function_name ($) {
+        var $search_page = $('#search_page'),
+            $obj = {
+              search_content: $search_page.find('#search_content'),
+              search_fields:  $search_page.find('#search_fields'),
+              search_btn:     $search_page.find('#search_btn')
+            },
+            url = '';
+
+        $obj.search_btn.on('click', function () {
+          var $fields = $obj.search_fields.find('[data-name="search_fields"]');
+          var data = {};
+          $fields.each(function (idx, elem) {
+            var name, value;
+            if($(elem).is(':visible')) {
+              name = $(elem).attr('name');
+              value = $(elem).val();
+              data[name] = value;
+            }
+          });
+          console.log(data);
+
+          // Send ajax request for the search result.
+          // var successHandler = function (list) {
+          //   console.log(list);
+          // }
+          // var jqx = $.ajax({
+          //   url: url,
+          //   type: 'POST',
+          //   data: data,
+          //   dataType: 'json',
+          // });
+          // jqx.done(successHandler);
+        });
+        $search_page.find('[name="type"]').on('change', function () {
+          var val = $(this).val();
+          // reset
+          $('[data-type]').hide();
+
+          // active
+          $('[data-type="'+ val +'"]').show();
+        });
+
+        // autocomplete
+        var availableTags = [
+          "ActionScript",
+          "AppleScript",
+          "Asp",
+          "BASIC",
+          "C",
+          "C++",
+          "Clojure",
+          "COBOL",
+          "ColdFusion",
+          "Erlang",
+          "Fortran",
+          "Groovy",
+          "Haskell",
+          "Java",
+          "JavaScript",
+          "Lisp",
+          "Perl",
+          "PHP",
+          "Python",
+          "Ruby",
+          "Scala",
+          "Scheme"
+        ];
+        
+        $('.mdl-textfield__input').autocomplete({
+          source: availableTags
+        });
+
+      }(jQuery);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <% inc partial/head.html %>
+    <title>FFN Notice</title>
+    <link rel="stylesheet" href="css/notice.css">
+  </head>
+
+  <body id="notice_page">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <!-- header -->
+      <% inc partial/header.html %>
+
+      <!-- left nav -->
+      <% inc partial/left_nav.html %>
+
+      <!-- main -->
+      <main class="mdl-layout__content mdl-color--grey-300 mCustomScrollbar mCS-autoHide">
+        <div class="mdl-grid demo-content">
+          <div class="mdl-cell--12-col mdl-cell mdl-grid mdl-grid--no-spacing">
+            <div id="notice_content">
+              <div class="notice-header">
+                <div class="title">Title</div>
+                <div class="from">From</div>
+                <div class="order-by" data-action="sort">Order by updated</div>
+              </div>
+              <div id="notice_inner_content">
+                <div class="no-notice-lists">No New Notice.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script id="notice_lists" type="text/x-handlebars-template">
+      {{#each data}}
+        <div class="notice-lists" data-nid="{{id}}">
+          <div class="title">{{subject}}</div>
+          <div class="from">{{announcer}}</div>
+          <div class="order-by">{{transDate updated_time}}</div>
+        </div>
+      {{/each}}
+    </script>
+
+    <script id="list_lightbox" type="text/x-handlebars-template">
+      <div class="pop-list" data-nid="{{id}}">
+        <div class="demo-card-event mdl-card mdl-shadow--2dp pop_status_2">
+          <div class="mdl-card__title mdl-card--expand">
+            <h4>
+              {{subject}}
+            </h4>
+            <span class="al_pop_close"></span>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <div class="al_desc">
+              <p class="al_content_subtitle">Description</p>
+              <p class="context">{{{content}}}</p>
+            </div>
+            {{#if attachment}}
+              <div class="al_attach">
+                <p class="al_content_subtitle">Attachment</p>
+                <a class="attachment" href="">{{attachment}}</a>
+              </div>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </script>
+    <script src="js/notice.js"></script>
+  </body>
+</html>

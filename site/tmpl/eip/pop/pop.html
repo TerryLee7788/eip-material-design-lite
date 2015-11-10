@@ -1,0 +1,191 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leaves Popup</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../css/material.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/leave_pop.css">
+  </head>
+
+  <body>
+    <!-- Application approved -->
+    <div class="demo-card-event mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>
+          My<br>
+          Annual Leave
+        </h4>
+        <span class="al_pop_close"></span>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <div class="al_time">
+          <span class="al_content_subtitle">Time</span>
+          <span>2015/12/16 ~ 2012/12/19</span>
+        </div>
+        <div class="al_duration">
+          <span class="al_content_subtitle">Duration</span>
+          <span>4 days</span>
+        </div>
+        <div class="al_reason">
+          <span class="al_content_subtitle">Reason</span>
+          <span>need a holiday</span>
+        </div>
+        <div class="al_apply_time">
+          <span class="al_content_subtitle">Apply on</span>
+          <span>2015/11/10</span>
+        </div>
+        <div class="ap_pop_status">
+          <div class="al_status_sign"></div>
+          <div class="al_status_text">
+            <span>This application</span>
+            <span>was approved.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application denied -->
+    <div class="demo-card-event mdl-card mdl-shadow--2dp denied_pop">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>
+          My<br>
+          Annual Leave
+        </h4>
+        <span class="al_pop_close"></span>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <div class="al_time">
+          <span class="al_content_subtitle">Time</span>
+          <span>2015/12/18</span>
+        </div>
+        <div class="al_duration">
+          <span class="al_content_subtitle">Duration</span>
+          <span>1 day</span>
+        </div>
+        <div class="al_reason">
+          <span class="al_content_subtitle">Reason</span>
+          <span>need a holiday</span>
+        </div>
+        <div class="al_apply_time">
+          <span class="al_content_subtitle">Apply on</span>
+          <span>2015/11/10</span>
+        </div>
+        <div class="ap_pop_status">
+          <div class="al_status_sign denied_color"></div>
+          <div class="al_status_text">
+            <span>This application</span>
+            <span>was denied.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Paid Sick Leave -->
+    <div class="demo-card-event mdl-card mdl-shadow--2dp paid_sick_pop">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>
+          Dorian Huang<br>
+          Paid Sick Leave
+        </h4>
+        <span class="al_pop_close"></span>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <div class="al_time">
+          <span class="al_content_subtitle">Time</span>
+          <span>2015/12/18, 10:00 ~ 19:00</span>
+        </div>
+        <div class="al_duration">
+          <span class="al_content_subtitle">Duration</span>
+          <span>1 day</span>
+        </div>
+        <div class="al_reason">
+          <span class="al_content_subtitle">Reason</span>
+          <span>got a cold</span>
+        </div>
+        <div class="al_apply_time">
+          <span class="al_content_subtitle">Apply on</span>
+          <span>2015/11/12</span>
+        </div>
+        <div class="al_leave_lists">
+          <div class="list_title">Dorian Huang's leave history</div>
+        </div>
+        <div class="al_leave_lists">
+          <div class="list_title">Event and away list on 2015/11/12</div>
+        </div>
+      </div>
+      <div class="ap_pop_status">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">DENY</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">APPROVE</button>
+      </div>
+    </div>
+
+    <!-- Apply for leave -->
+    <div class="demo-card-event mdl-card mdl-shadow--2dp apply_for_leave">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>Apply for a Leave</h4>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <div class="al_type">
+          <span class="al_content_subtitle">Type</span>
+          <select name="" id="">
+            <option value="">Annual Leave</option>
+            <option value="">Annual Leave2</option>
+            <option value="">Annual Leave3</option>
+          </select>
+        </div>
+        <div class="al_from">
+          <span class="al_content_subtitle">From</span>
+          <select name="" id="" class="from_date">
+            <option value="">2015/11/12</option>
+            <option value="">2015/11/13</option>
+            <option value="">2015/11/14</option>
+          </select>
+          <select name="" id="" class="from_time">
+            <option value="">10:00</option>
+            <option value="">11:00</option>
+            <option value="">12:00</option>
+          </select>
+        </div>
+        <div class="al_to">
+          <span class="al_content_subtitle">To</span>
+          <select name="" id="" class="from_date">
+            <option value="">2015/11/12</option>
+            <option value="">2015/11/13</option>
+            <option value="">2015/11/14</option>
+          </select>
+          <select name="" id="" class="from_time">
+            <option value="">10:00</option>
+            <option value="">11:00</option>
+            <option value="">12:00</option>
+          </select>
+        </div>
+        <div class="al_duration">
+          <span class="al_content_subtitle">Duration</span>
+          <span>1 day</span>
+        </div>
+        <div class="al_reason">
+          <div class="mdl-textfield mdl-js-textfield">
+            <span class="al_content_subtitle">Reason</span>
+            <input class="mdl-textfield__input" type="text" id="sample1" />
+            <label class="mdl-textfield__label" for="sample1"></label>
+          </div>
+        </div>
+      </div>
+      <div class="ap_pop_status">
+        <button class="mdl-button mdl-js-button">CANCEL</button>
+        <button class="mdl-button mdl-js-button">APPLY</button>
+      </div>
+    </div>
+
+    <script src="material.min.js"></script>
+  </body>
+</html>

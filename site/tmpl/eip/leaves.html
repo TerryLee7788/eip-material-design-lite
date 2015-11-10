@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <% inc partial/head.html %>
+    <title>FFN Leaves</title>
+    <link rel="stylesheet" href="css/leaves.css">
+  </head>
+
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <!-- header -->
+      <% inc partial/header.html %>
+
+      <!-- left nav -->
+      <% inc partial/left_nav.html %>
+
+      <!-- main -->
+      <main class="mdl-layout__content mdl-color--grey-300 mCustomScrollbar mCS-autoHide">
+        <div class="mdl-grid demo-content">
+          <div class="mdl-cell--12-col mdl-cell mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--8-col">
+              <div class="leave_count">Annual: <span class="leave_num">2</span> days / Paid Sick: <span class="leave_num">2</span> days / Compensatory: <span class="leave_num">2</span> days</div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col">
+              <div class="sort" data-action="sort">Order by updated</div>
+            </div>
+          </div>
+
+          <div class="mdl-cell--12-col mdl-grid mdl-color--white mdl-cell mdl-shadow--2dp leave_section">
+            <!-- leave list -->
+            <div class="no-leave-list">Good job!! There is no new leave message!! <br/>Please keep working...</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script id="leave-list" type="text/x-handlebars-template">
+      <table class="mdl-data-table mdl-js-data-table">
+        {{#each data}}
+          <tr id="app_{{@index}}">
+            <td class="mdl-data-table__cell--non-numeric">{{leave_type_name}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{start_datetime}} ~ {{stop_datetime}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{#checkvalue leave_hours}}{{/checkvalue}}</td>
+            <td class="mdl-data-table__cell--non-numeric status status_{{app_status}}">{{{ifstatus}}}</td>
+            <td>
+              <div class="pop-list" id="pop_{{@index}}">
+
+                <div class="demo-card-event mdl-card mdl-shadow--2dp pop_status_{{app_status}}">
+                  <div class="mdl-card__title mdl-card--expand">
+                    <h4>
+                      我的<br>
+                      {{leave_type_name}}
+                    </h4>
+                    <span class="al_pop_close"></span>
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                    <div class="al_time">
+                      <span class="al_content_subtitle">Time</span>
+                      <span>{{start_datetime}}</span>
+                    </div>
+                    <div class="al_duration">
+                      <span class="al_content_subtitle">Duration</span>
+                      <span>{{#checkvalue leave_hours}}{{/checkvalue}}</span>
+                    </div>
+                    <div class="al_reason">
+                      <span class="al_content_subtitle">Reason</span>
+                      <span>{{reason}}</span>
+                    </div>
+                    <div class="al_apply_time">
+                      <span class="al_content_subtitle">Apply on</span>
+                      <span>{{updated_time}}</span>
+                    </div>
+                    <div class="ap_pop_status">
+                      <div class="al_status_sign"></div>
+                      <div class="al_status_text">
+                        <span>This application</span>
+                        <span>{{{ifstatus}}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    </script>
+    <script src="js/leave.js"></script>
+  </body>
+</html>

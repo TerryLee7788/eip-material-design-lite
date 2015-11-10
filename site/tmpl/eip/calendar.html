@@ -1,0 +1,388 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <% inc partial/head.html %>
+    <title>FFN Calendar</title>
+    <link rel="stylesheet" href="css/fullcalendar.css">
+  </head>
+
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <!-- header -->
+      <% inc partial/header.html %>
+
+      <!-- left nav -->
+      <% inc partial/left_nav.html %>
+
+      <!-- main -->
+      <main class="mdl-layout__content mdl-color--grey-300 mCustomScrollbar mCS-autoHide">
+        <div class="mdl-grid demo-content">
+          <div class="mdl-cell--12-col mdl-cell mdl-shadow--2dp">
+            <div id="calendar"></div>
+
+            <!-- remove event -->
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp" id="remove_event" style="display:none;">
+              <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Update Event</h2>
+              </div>
+              <div class="mdl-card__actions">
+                <div class="al_title">
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <span class="al_content_subtitle">Title</span>
+                    <input class="mdl-textfield__input" type="text" id="update_title"/>
+                    <label class="mdl-textfield__label" for="update_title"></label>
+                  </div>
+                </div>
+                <div class="al_type">
+                  <span class="al_content_subtitle">Type</span>
+                  <select name="" id="update_type" class="event_type">
+                    <option value="0">Personl</option>
+                    <option value="1">Company</option>
+                    <option value="2">Holiday</option>
+                  </select>
+                </div>
+                <div class="al_location">
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <span class="al_content_subtitle">Location</span>
+                    <input class="mdl-textfield__input" type="text" id="update_location" />
+                    <label class="mdl-textfield__label" for="update_location"></label>
+                  </div>
+                </div>
+                <div class="al_from al_gap">
+                  <span class="al_content_subtitle">From</span>
+                  <label class="datepicker">
+                    <input type="text" name="start_date" class="from_date">
+                    <i class="material-icons">event_busy</i>
+                  </label>
+                  <label class="timepicker">
+                    <input type="text" name="start_time" class="from_time clockpicker" value="09:00">
+                    <i class="material-icons">schedule</i>
+                  </label>
+                </div>
+                <div class="al_to al_gap">
+                  <span class="al_content_subtitle">To</span>
+                  <label class="datepicker">
+                    <input type="text" name="end_date" class="from_date">
+                    <i class="material-icons">event_busy</i>
+                  </label>
+                  <label class="timepicker">
+                    <input type="text" name="end_time" class="from_time clockpicker" value="18:00">
+                    <i class="material-icons">schedule</i>
+                  </label>
+                </div>
+                <div class="ap_pop_status">
+                  <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="remove_btn">DELETE</button>
+                  <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">CANCEL</button>
+                  <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">SAVE</button>
+                </div>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="mdl-color-text--black material-icons">clear</i>
+                </button>
+              </div>
+            </div>
+            <!-- end remove -->
+
+            <div id="away_dialog" style="display:none;">
+              <ul id="away_lists"></ul>
+              <script id="away-list" type="text/x-handlebars-template">
+                {{#each away.lists}}
+                <li class="away_status_{{away_status}}">
+                  <img src="{{away_image}}" class="demo-avatar">
+                  <div class="away_note">
+                    <h5>{{user_name}}</h5>
+                    <p>{{start_datetime}} ( {{leave_hours}} Hours )</p>
+                  </div>
+                  <div class="material-icons status_{{away_status}}"></div>
+                </li>
+                {{/each}}
+              </script>
+            </div>
+
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/lib/moment.min.js"></script>
+    <script src="js/fullcalendar.js"></script>
+    <script>
+        $(document).ready(function() {
+
+        var away_json = {
+            "away": {
+              lists: [{
+                start_datetime: "2015-09-09 09:00:00",
+                user_name: "Ike Chen",
+                stop_datetime: "2015-09-09 13:00:00",
+                leave_hours: "4",
+                away_image: "images/user.jpg",
+                away_status: 1
+              }, {
+                start_datetime: "2015-09-09 09:00:00",
+                user_name: "Ike Chen",
+                stop_datetime: "2015-09-09 13:00:00",
+                leave_hours: "4",
+                away_image: "images/user.jpg",
+                away_status: 2
+              }, {
+                start_datetime: "2015-09-09 09:00:00",
+                user_name: "Ike Chen",
+                stop_datetime: "2015-09-09 13:00:00",
+                leave_hours: "4",
+                away_image: "images/user.jpg",
+                away_status: 1
+              }, {
+                start_datetime: "2015-09-09 09:00:00",
+                user_name: "Ike Chen",
+                stop_datetime: "2015-09-09 13:00:00",
+                leave_hours: "4",
+                away_image: "images/user.jpg",
+                away_status: 1
+              }, {
+                start_datetime: "2015-09-09 09:00:00",
+                user_name: "Ike Chen",
+                stop_datetime: "2015-09-09 13:00:00",
+                leave_hours: "4",
+                away_image: "images/user.jpg",
+                away_status: 2
+              }]
+            }
+          };
+
+        var away_source = $("#away-list").html(),
+            away_template = Handlebars.compile(away_source);
+        $('#away_lists').html(away_template(away_json));
+
+        $('#calendar').fullCalendar({
+          header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+          },
+          weekMode: 'liquid',
+          dayClick: function(date, allDay, jsEvent, view) {
+
+            $.blockUI({
+              message: $('#new_1'),
+              onBlock: function() {
+                $(".blockPage").addClass("popup_box");
+              },
+              onOverlayClick: $.unblockUI
+            });
+
+            $('#new_1 button[type="submit"]').click(function(){
+              var e_title = $('#new_1 #event_title').val(),
+                  e_loc = $('#new_1 #event_location').val(),
+                  start_date = $('#new_1 .al_from .from_date').val(),
+                  start_time = $('#new_1 .al_from .from_time').val(),
+                  end_date = $('#new_1 .al_to .from_date').val(),
+                  end_time = $('#new_1 .al_to .from_time').val(),
+                  e_duration = $('#new_1 #event_duration').val(),
+                  e_type = $('#new_1 .event_type').val(),
+                  type_list = ["green","blue","red"],
+                  new_event;
+              if( e_title && e_duration < 24){
+                new_event = {
+                  title: e_title + " at " + e_loc,
+                  start: start_date + "T" + start_time,
+                  end: end_date + "T" + end_time,
+                  borderColor: type_list[e_type]
+                };
+                $('#calendar').fullCalendar('renderEvent', new_event ,true);
+              }else if( e_title && e_duration == 24){
+                new_event = {
+                  title: e_title + " at " + e_loc,
+                  start: start_date + "T" + start_time,
+                  allDay: allDay,
+                  borderColor: type_list[e_type]
+                };
+                $('#calendar').fullCalendar('renderEvent', new_event ,true);
+              }
+              $('#new_1 #event_title').val('');
+              $('#new_1 #event_location').val('');
+            });
+          },
+          eventClick : function(event, jsEvent, view) {
+            if( event._id != "1" ) {
+
+              $.blockUI({
+                message: $('#remove_event'),
+                onBlock: function() {
+                  $(".blockPage").addClass("popup_box");
+                },
+                onOverlayClick: $.unblockUI
+              });
+
+              var this_start_date = event.start._i.split("T")[0],
+                  this_start_time = event.start._i.split("T")[1],                  
+                  this_title = event.title.split("at")[0],
+                  this_loc = event.title.split("at")[1],                 
+                  type_list = ["green","blue","red"],
+                  new_event;
+
+              if ( event.end != null ){
+                var this_end_date = event.end._i.split("T")[0],
+                    this_end_time = event.end._i.split("T")[1];
+              }
+
+                $('#remove_event .al_from .from_date').val(this_start_date);              
+                $('#remove_event .al_from .from_time').val(this_start_time);
+                $('#remove_event .al_to .from_date').val(this_end_date);              
+                $('#remove_event .al_to .from_time').val(this_end_time);
+                $('#remove_event #update_title').val(this_title);
+                $('#remove_event #update_location').val(this_loc);              
+
+              $('#remove_event button[type="submit"]').click(function(){
+                new_event = {
+                  title: $('#remove_event #update_title').val() + " at " + $('#remove_event #update_location').val(),
+                  start: $('#remove_event .al_from .from_date').val() + "T" + $('#remove_event .al_from .from_time').val(),
+                  end: $('#remove_event .al_to .from_date').val() + "T" + $('#remove_event .al_to .from_time').val(),
+                  borderColor: type_list[$('#update_type').val()]
+                };
+                if($('#remove_event #update_title').val()){
+                  $('#calendar').fullCalendar('renderEvent', new_event ,true);
+                }
+                $('#calendar').fullCalendar('removeEvents', event._id );
+                $('#remove_event #update_title').val('');
+                $('#remove_event #update_location').val('');
+              });
+
+              $('#remove_event #remove_btn').click(function(){
+                $('#calendar').fullCalendar('removeEvents', event._id );
+              });
+
+              $('#remove_event button').click($.unblockUI);
+
+            }
+          },
+          eventMouseover : function(event, jsEvent, view) {
+            var target = $(this);
+            if( event._id == "1" ) {
+              $( "#away_dialog" ).dialog({
+                resizable: false,
+                width:500,
+                title: 'Away List',
+                dialogClass: 'away_pop mdl-shadow--2dp'
+
+              });
+              $("#away_dialog").dialog("widget").position({
+                 my: 'right top',
+                 at: 'center bottom',
+                 of: target
+              });
+            }
+          },
+          eventMouseout: function(event, jsEvent, view) {
+            if( event._id == "1" ) {
+              $( "#away_dialog" ).dialog("close");
+            }
+          },
+          editable: true,
+          eventLimit: true, // allow "more" link when too many events
+          events: [
+            {
+              title: 'All Day Event',
+              start: '2015-11-01',
+              borderColor: 'red'
+            },
+            {
+              id: 001,
+              title: 'Away:5',
+              start: '2015-11-02',
+              backgroundColor: 'black',
+              borderColor: 'black',
+              textColor: 'white',
+              editable: false,
+              className: 'away'
+            },
+            {
+              id: 001,
+              title: 'Away:5',
+              start: '2015-11-03',
+              backgroundColor: 'black',
+              borderColor: 'black',
+              textColor: 'white',
+              editable: false,
+              className: 'away'
+            },
+            {
+              id: 001,
+              title: 'Away:5',
+              start: '2015-11-04',
+              backgroundColor: 'black',
+              borderColor: 'black',
+              textColor: 'white',
+              editable: false,
+              className: 'away'
+            },
+            {
+              title: 'Long Event',
+              start: '2015-11-07',
+              end: '2015-11-10',
+              borderColor: 'green'
+            },
+            {
+              id: 999,
+              title: 'Repeating Event',
+              start: '2015-11-09T16:00:00',
+              borderColor: 'blue'
+            },
+            {
+              id: 999,
+              title: 'Repeating Event',
+              start: '2015-11-16T16:00:00',
+              borderColor: 'blue'
+            },
+            {
+              title: 'Conference',
+              start: '2015-11-11',
+              end: '2015-11-13',
+              borderColor: 'purple'
+            },
+            {
+              title: 'Meeting',
+              start: '2015-11-12T10:30:00',
+              end: '2015-11-12T12:30:00',
+              borderColor: 'red'
+            },
+            {
+              title: 'Lunch',
+              start: '2015-11-12T12:00:00',
+              borderColor: 'red'
+            },
+            {
+              title: 'Meeting',
+              start: '2015-11-12T14:30:00',
+              borderColor: 'red'
+            },
+            {
+              title: 'Happy Hour',
+              start: '2015-11-12T17:30:00',
+              borderColor: 'green'
+            },
+            {
+              title: 'Dinner',
+              start: '2015-11-12T20:00:00',
+              borderColor: 'green'
+            },
+            {
+              title: 'Birthday Party',
+              start: '2015-11-13T07:00:00',
+              borderColor: '#FFCD01'
+            },
+            {
+              title: 'Click for Google',
+              url: 'http://google.com/',
+              start: '2015-11-28',
+              borderColor: '#FFCD01'
+            }
+          ]
+        });
+
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+/* Create new popup */
+.mdl-menu__container,
+.mdl-menu__container:before {
+  box-shadow: 0 0 13px 1px rgba(0,0,0,0.3);
+}
+
+.mdl-menu__container {
+  top: 60px !important;
+  right: 183px !important;
+  transition: opacity 5s;
+}
+
+.mdl-menu__container:before {
+  content: '';
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  position: relative;
+  top: -7px;
+  left: 50%;
+  margin-left: -10px;
+  background: #FFF;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  opacity: 1;
+}
+
+.mdl-menu__container ul {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-padding-start: 0;
+  background: #FFF;
+  padding: 5px 0;
+}
+
+.mdl-menu__container ul li {
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+}

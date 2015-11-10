@@ -1,0 +1,456 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <% inc partial/head.html %>
+    <title>FFN Home</title>
+    <link rel="stylesheet" href="css/home.css">
+  </head>
+
+  <body onload="ShowCalendar()">
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <!-- header -->
+      <% inc partial/header.html %>
+
+      <!-- left nav -->
+      <% inc partial/left_nav.html %>
+
+      <!-- main -->
+      <main class="mdl-layout__content mdl-color--grey-300 mCustomScrollbar mCS-autoHide">
+        <div class="mdl-grid demo-content mdl-grid--no-spacing">
+
+          <div class="mdl-cell--6-col mdl-grid">
+            <!-- main left -->
+            <!-- Calendar -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-grid--no-spacing calendar-section">
+              <div class="year"></div>
+              <div class="week">
+                <ul class="day"></ul>
+              </div>
+            </div>
+
+            <!-- Event -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp event-section">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <i class="mdl-color-text--orange-900 material-icons" role="presentation">event_note</i>
+                  <h2 class="mdl-card__title-text mdl-color-text--orange-900">My Event</h2>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <ul id="event_lists"></ul>
+                  <script id="event-list" type="text/x-handlebars-template">
+                    {{#each events.lists}}
+                    <li style="border-left:5px solid {{event_color}}">
+                      <h5>{{event_title}}</h5>
+                      <p>{{event_content}}</p>
+                    </li>
+                    {{/each}}
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notice -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp notice-section">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <i class="mdl-color-text--orange-900 material-icons" role="presentation">notifications</i>
+                  <h2 class="mdl-card__title-text mdl-color-text--orange-900">Notice</h2>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <ul id="notice_lists"></ul>
+                  <script id="notice-list" type="text/x-handlebars-template">
+                    {{#each notice.lists}}
+                    <li>
+                      <h5>{{notice_title}}</h5>
+                      <p>{{notice_content}}</p>
+                    </li>
+                    {{/each}}
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!-- Waiting List -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp wait-section">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <i class="mdl-color-text--orange-900 material-icons" role="presentation">notifications</i>
+                  <h2 class="mdl-card__title-text mdl-color-text--orange-900">My Waiting List</h2>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <ul id="wait_lists"></ul>
+                  <script id="wait-list" type="text/x-handlebars-template">
+                    {{#each wait.lists}}
+                    <li>
+                      <h5>{{user_name_cht}} - {{leave_type_name}}</h5>
+                      <p>on {{start_datetime}} ~ {{stop_datetime}}</p>
+
+
+                      <div class="pop-list">  
+                        <div class="demo-card-event mdl-card away_appr_popup">
+                          <div class="mdl-card__title mdl-card--expand mdl-color--yellow-800">
+                            <h4>
+                              {{user_name_cht}} {{user_name}}<br>
+                              {{leave_type_name}}
+                            </h4>                          
+                          </div>
+                          <div class="mdl-card__actions mdl-card--border">
+                            <div class="al_time">
+                              <span class="al_content_subtitle">Time</span>
+                              <span>{{start_datetime}} ~ {{stop_datetime}}</span>
+                            </div>
+                            <div class="al_duration">
+                              <span class="al_content_subtitle">Duration</span>
+                              <span>{{leave_hours}} Hours</span>
+                            </div>
+                            <div class="al_reason">
+                              <span class="al_content_subtitle">Reason</span>
+                              <span>{{reason}}</span>
+                            </div>
+                            <div class="al_apply_time">
+                              <span class="al_content_subtitle">Apply on</span>
+                              <span>{{updated_time}}</span>
+                            </div>
+                            <div class="ap_pop_status">
+                              <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--grey-700 mdl-color-text--white">DENY</button>
+                              <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color--red-600 mdl-color-text--white" type="submit">APPROVE</button> 
+                            </div>
+                          </div>
+                          <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                              <i class="mdl-color-text--white material-icons">clear</i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </li>
+                    {{/each}}
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mdl-cell--6-col mdl-grid">
+            <!-- main Right -->
+            <!-- Away List -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp away-section">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <i class="mdl-color-text--orange-900 material-icons" role="presentation">format_align_left</i>
+                  <h2 class="mdl-card__title-text mdl-color-text--orange-900">Today Away List</h2>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <ul id="away_lists"></ul>
+                  <script id="away-list" type="text/x-handlebars-template">
+                    {{#each away.lists}}
+                    <li class="away_status_{{away_status}}">                     
+                      <img src="{{away_image}}" class="demo-avatar">
+                      <div class="away_note">
+                        <h5>{{user_name}}</h5>
+                        <p>{{start_datetime}} ( {{leave_hours}} Hours )</p>
+                      </div>
+                      <div class="material-icons status_{{away_status}}"></div>  
+                    </li>
+                    {{/each}}
+                  </script>
+                </div>
+              </div>
+            </div>
+
+            <!-- Leaves -->
+            <div class="mdl-color--white mdl-cell mdl-cell--12-col mdl-shadow--2dp leave-section">
+              <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+                <div class="mdl-card__title">
+                  <i class="mdl-color-text--orange-900 material-icons" role="presentation">flight_takeoff</i>
+                  <h2 class="mdl-card__title-text mdl-color-text--orange-900">My Leaves</h2>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                  <ul id="leave_lists"></ul>
+                  <script id="leave-list" type="text/x-handlebars-template">
+                    {{#each leave.lists}}
+                    <li>                      
+                      <h5>{{leave_type_name}}</h5>
+                      <p>on {{start_datetime}} ~ {{stop_datetime}}</p>
+                      <p class="status_{{leave_status}}">{{ifstatus}}</p>
+                    </li>                    
+                    {{/each}}
+                  </script>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <script>
+    jQuery(function($){
+      var event_json = {
+          "events": {
+            lists: [{
+              event_title: "Meeting: News Letter",
+              event_content: "15:00 ~ 17:00",
+              event_color: "#0052a2"
+            }, {
+              event_title: "Mtg SOC-1234",
+              event_content: "18:00 ~ 19:00",
+              event_color: "#669e0f"
+            }]
+          }
+        },
+        notice_json = {
+          "notice": {
+            lists: [{
+              notice_title: "Chris's birthday",
+              notice_content: "Posted on 2015/11/13 10:32 by HR"
+            }, {
+              notice_title: "Meeting: News Letter",
+              notice_content: "Posted on 2015/11/13 10:32 by HR"
+            }]
+          }
+        },        
+        waiting_json = {
+          "wait": {
+            lists: [{
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              leave_status: 1
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              leave_status: 1
+            }]
+          }
+        },
+        away_json = {
+          "away": {
+            lists: [{
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              away_image: "images/user.jpg",
+              away_status: 1
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              away_image: "images/user.jpg",
+              away_status: 2
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              away_image: "images/user.jpg",
+              away_status: 1
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              away_image: "images/user.jpg",
+              away_status: 1
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              reason: "got a cold",
+              created_time: null,
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              away_image: "images/user.jpg",
+              away_status: 2
+            }]
+          }
+        },
+        leave_json = {
+          "leave": {
+            lists: [{
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-09-09 09:00:00",
+              leave_type_id: "9",
+              reason: null,
+              created_time: null,
+              app_id: "1",
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-09-21 18:25:13",
+              stop_datetime: "2015-09-09 13:00:00",
+              leave_hours: "4",
+              user_id: "34",
+              leave_type_name: "特休假",
+              owner_id: "34",
+              leave_status: 1
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-10-13 09:00:00",
+              leave_type_id: "10",
+              reason: null,
+              created_time: "2015-10-22 20:59:34",
+              app_id: "47",
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-10-22 20:59:34",
+              stop_datetime: "2015-10-13 18:00:00",
+              leave_hours: "8",
+              user_id: "34",
+              leave_type_name: "公傷假",
+              owner_id: "34",
+              leave_status: 2
+            }, {
+              user_name_cht: "陳俊維",
+              start_datetime: "2015-10-27 11:28:59",
+              leave_type_id: "3",
+              reason: "",
+              created_time: "2015-10-27 11:29:21",
+              app_id: "58",
+              user_name: "Ike Chen",
+              applicant_id: "34",
+              updated_time: "2015-10-27 11:29:21",
+              stop_datetime: "2015-10-27 13:28:59",
+              leave_hours: "2",
+              user_id: "34",
+              leave_type_name: "全薪普通傷病假",
+              owner_id: "34",
+              leave_status: 0
+            }, {
+              user_name_cht: "劉又瑜",
+              start_datetime: "2015-10-28 11:51:50",
+              leave_type_id: "2",
+              reason: "",
+              created_time: "2015-10-28 11:52:00",
+              app_id: "63",
+              user_name: "Bill Liu",
+              applicant_id: "159",
+              updated_time: "2015-10-28 11:52:00",
+              stop_datetime: "2015-10-29 11:51:00",
+              leave_hours: "8",
+              user_id: "159",
+              leave_type_name: "事假",
+              owner_id: "159",
+              leave_status: 1
+            }]
+          }
+        };
+
+      var event_source = $("#event-list").html(),
+        event_template = Handlebars.compile(event_source),
+        notice_source = $("#notice-list").html(),
+        notice_template = Handlebars.compile(notice_source),
+        away_source = $("#away-list").html(),
+        away_template = Handlebars.compile(away_source),
+        leave_source = $("#leave-list").html(),
+        leave_template = Handlebars.compile(leave_source),
+        wait_source = $("#wait-list").html(),
+        wait_template = Handlebars.compile(wait_source);
+
+      Handlebars.registerHelper('ifstatus', function(options) {
+        return {
+          0: 'WAS DENIED',
+          1: 'WAS APPROVED',
+          2: 'IS WAITING FOR APPROVAL'
+        }[this.leave_status] || 'unknow'
+      });
+
+      $('#event_lists').html(event_template(event_json));
+      $('#notice_lists').html(notice_template(notice_json));
+      $('#away_lists').html(away_template(away_json));
+      $('#leave_lists').html(leave_template(leave_json));
+      $('#wait_lists').html(wait_template(waiting_json));
+
+      $("#wait_lists li").click(function(){        
+        $.blockUI({
+          message: $(this).find(".pop-list"),
+          onBlock: function() {
+            $(".blockPage").addClass("popup_box");
+          },
+          onOverlayClick: closeBlockUI
+        });      
+      });
+      $('.away_appr_popup .ap_pop_status button').click($.unblockUI);
+      $('.mdl-card__menu button').click($.unblockUI);
+    });
+
+      function ShowCalendar() {
+        var dt = new Date(),
+          year = dt.getFullYear(),
+          month = dt.getMonth(),
+          date = dt.getDate(),
+          day = dt.getDay(),
+          month_list = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          day_list = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+        $(".calendar-section .year").html(year + '&nbsp;' + month_list[month]);
+
+        for (var i = 0; i < 7; i++) {
+          $(".calendar-section .day").append('<li>' + day_list[i] + '</li>');
+        }
+        for (var k = 0; k < day + 1; k++) {
+          $(".calendar-section .day li:eq(" + (day - k) + ")").append('<span>' + (date - k) + '</span>');
+        }
+        for (var r = 1; r < 7; r++) {
+          $(".calendar-section .day li:eq(" + (day + r) + ")").append('<span>' + (date + r) + '</span>');
+        }
+        $(".calendar-section .day li:eq(" + day + ") span").addClass('today');
+
+      }
+    </script>
+  </body>
+</html>

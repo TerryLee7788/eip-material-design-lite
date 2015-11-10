@@ -1,0 +1,12 @@
+.demo-layout .demo-content {
+  height: 800px;
+  padding: 20px;
+}
+
+.demo-layout .demo-navigation .mdl-navigation__link.tool {
+  color: #fff;
+  background-color: #FF9801;
+}
+
+.demo-layout .demo-navigation .mdl-navigation__link.tool .material-icons {
+  color: #fff !important;
